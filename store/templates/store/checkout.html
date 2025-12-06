@@ -1,0 +1,199 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5" style="min-height: 80vh;">
+    
+    <div class="text-center mb-5 fade-up">
+        <h2 class="display-4 text-white" style="font-family: 'Playfair Display', serif;">Оформление заказа</h2>
+        <div style="width: 60px; height: 3px; background: var(--gold); margin: 25px auto; box-shadow: 0 0 10px var(--gold);"></div>
+    </div>
+
+    <form action="{% url 'checkout' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="row g-5">
+            <div class="col-lg-7 fade-up" style="animation-delay: 0.1s;">
+                
+                <h3 class="mb-4 gold-title">
+                    <i class="fas fa-truck me-2"></i> Детали доставки
+                </h3>
+                
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label class="input-label">Имя</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="col-6">
+                        <label class="input-label">Фамилия</label>
+                        {{ form.last_name }}
+                    </div>
+
+                    <div class="col-6">
+                        <label class="input-label">Телефон</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="col-6">
+                        <label class="input-label">Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="col-12">
+                        <label class="input-label">Город / Район</label>
+                        {{ form.city }}
+                    </div>
+                    <div class="col-12">
+                        <label class="input-label">Точный адрес</label>
+                        {{ form.address }}
+                    </div>
+                    
+                    <div class="col-12">
+                        <label class="input-label">Комментарий</label>
+                        {{ form.note }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 fade-up" style="animation-delay: 0.2s;">
+                <div class="p-4 rounded-4 sticky-top summary-card" style="top: 120px;">
+                    <h4 class="text-white mb-4" style="font-family: 'Playfair Display', serif;">Ваш заказ</h4>
+
+                    <div class="mb-4 pe-2 cart-scroll">
+                        {% for item in cart_items %}
+                        <div class="d-flex justify-content-between align-items-center mb-3 text-white-50 border-bottom border-secondary pb-3" style="--bs-border-opacity: .2;">
+                            <div>
+                                <span class="text-white d-block">{{ item.product.name }}</span>
+                                <small class="text-muted">Кол-во: {{ item.quantity }}</small>
+                            </div>
+                            <span class="text-white fs-5">{{ item.sub_total }} c.</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-5 pt-2">
+                        <span class="h5 text-white mb-0">Итого:</span>
+                        <span class="h3 mb-0" style="color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">{{ total }} сом</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="input-label mb-3">Способ оплаты</label>
+                        <div class="d-flex gap-3">
+                            <div class="flex-fill">
+                                <input class="form-check-input d-none" type="radio" name="payment_method" id="payCash" value="Cash" checked>
+                                <label class="btn-payment" for="payCash">
+                                    <i class="fas fa-money-bill-wave mb-2 fs-4" style="color: #4cd137;"></i>
+                                    <span>Наличные</span>
+                                </label>
+                            </div>
+                            <div class="flex-fill">
+                                <input class="form-check-input d-none" type="radio" name="payment_method" id="payCard" value="Card">
+                                <label class="btn-payment" for="payCard">
+                                    <i class="fas fa-credit-card mb-2 fs-4" style="color: #00a8ff;"></i>
+                                    <span>Онлайн / Карта</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-luxury w-100 py-3 shadow-lg fs-6 mt-3 text-uppercase fw-bold">
+                        Подтвердить заказ
+                    </button>
+                    
+                    <p class="text-center mt-3 mb-0 small text-muted">
+                        <i class="fas fa-lock me-1"></i> Данные защищены
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* 🌟 ЗОЛОТОЙ ЗАГОЛОВОК (НОВОЕ) */
+    .gold-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold);
+        font-size: 2rem;
+        /* Легкое свечение */
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        /* Анимация пульсации */
+        animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+        to { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+    }
+
+    /* ЖЕСТКИЕ СТИЛИ ДЛЯ ПОЛЕЙ (Оставляем как было, раз тебе понравилось) */
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="number"],
+    form textarea,
+    .form-control {
+        background-color: transparent !important;
+        border: 1px solid #444 !important;
+        color: white !important;
+        height: 55px !important;
+        width: 100% !important;
+        border-radius: 10px !important;
+        padding: 0 15px !important;
+        font-size: 16px !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    form textarea {
+        height: 120px !important;
+        padding-top: 15px !important;
+    }
+
+    form input:focus, form textarea:focus {
+        border-color: var(--gold) !important;
+        background-color: #0a0a0a !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1) !important;
+    }
+
+    .input-label {
+        color: #888;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 600;
+    }
+
+    .summary-card {
+        background: #0f0f0f;
+        border: 1px solid #222;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .cart-scroll { max-height: 250px; overflow-y: auto; }
+
+    .btn-payment {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #333;
+        border-radius: 12px;
+        background: transparent;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .btn-payment span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
+
+    input[type="radio"]:checked + .btn-payment {
+        border-color: var(--gold);
+        background-color: rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="container text-center fade-up" style="padding-top: 150px; min-height: 80vh;">
+    
+    <div class="mb-4">
+        <div style="
+            width: 80px; height: 80px; 
+            background: #00c853; 
+            border-radius: 50%; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
+        ">
+            <i class="fas fa-check fa-3x text-white"></i>
+        </div>
+    </div>
+
+    <h1 class="text-white display-3 fw-bold mb-3" style="font-family: 'Playfair Display', serif;">
+        Спасибо!
+    </h1>
+    
+    <p class="fs-4 mb-4" style="color: #e0e0e0;">
+        Ваш заказ <span style="color: var(--gold); font-weight: bold;">#{{ order.id }}</span> успешно принят.
+    </p>
+
+    <div class="p-3 d-inline-block rounded-3" style="background: #111; border: 1px solid #333;">
+        <p class="mb-0 text-white small">
+            Мы свяжемся с вами по номеру: <br>
+            <span style="color: var(--gold); font-size: 1.2rem;">{{ order.phone }}</span>
+        </p>
+    </div>
+    
+    <div class="mt-5">
+        <a href="{% url 'home' %}" class="btn btn-luxury px-5 py-3">
+            Вернуться в магазин
+        </a>
+    </div>
+</div>
+{% endblock %}

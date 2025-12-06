@@ -1,0 +1,98 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Collection{% endblock %}
+
+{% block content %}
+    <div style="
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #000;
+        overflow: hidden;
+    ">
+        <div style="
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2670&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            transform: scale(1.1);
+        "></div>
+        
+        <div class="container position-relative fade-up" style="z-index: 2;">
+            <p class="text-uppercase mb-3" style="color: var(--gold); letter-spacing: 3px; font-size: 0.9rem;">
+                Est. 2025 • Haute Pâtisserie
+            </p>
+            <h1 class="display-1 fw-bold text-white mb-4">
+                Добро пожаловать в <br> <span style="font-style: italic;">Eco Cakes</span>
+            </h1>
+            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 600px;">
+                Высокая кухня без сахара. Вкус, который вы заслуживаете.
+            </p>
+            <a href="#shop" class="btn btn-luxury">Перейти в бутик</a>
+        </div>
+    </div>
+
+    <div id="shop" class="container py-5" style="margin-top: 50px;">
+        <div class="text-center mb-5 fade-up" style="animation-delay: 0.2s;">
+             <h2 class="display-4">Наша Коллекция</h2>
+             <div class="d-flex justify-content-center flex-wrap gap-2 mb-5 fade-up" style="animation-delay: 0.1s;">
+            <a href="{% url 'home' %}#shop" class="btn btn-outline-light rounded-pill px-4 border-secondary">Все</a>
+            
+            {% for cat in categories %}
+            <a href="{% url 'home' %}?category={{ cat.slug }}#shop" 
+               class="btn btn-outline-light rounded-pill px-4 border-secondary text-capitalize">
+                {{ cat.name }}
+            </a>
+            {% endfor %}
+        </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+            {% for product in products %}
+            <div class="col fade-up" style="animation-delay: 0.3s;">
+                
+                <div class="card h-100 border-0 card-hover" style="background: #141414; border-radius: 20px; overflow: hidden;">
+                    
+                    <div style="height: 350px; position: relative; overflow: hidden;">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="w-100 h-100 object-fit-cover">
+                        {% else %}
+                            <div class="d-flex align-items-center justify-content-center h-100 bg-secondary">Нет фото</div>
+                        {% endif %}
+                        
+                        {% if product.is_sugar_free %}
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-black text-white border border-white px-3 py-2 rounded-pill">Sugar Free</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body text-center p-4">
+                        <div class="text-uppercase small mb-2" style="color: var(--gold); letter-spacing: 1px;">
+                            {{ product.category.name }}
+                        </div>
+                        <h3 class="h4 text-white mb-3">{{ product.name }}</h3>
+                        
+                        <div class="small mb-4" style="color: #ccc;">
+                            {{ product.calories }} ккал • Белки {{ product.proteins }}г
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h4 mb-0 text-white">RM {{ product.price }}</span>
+                            <a href="{% url 'add_cart' product.id %}" class="btn btn-outline-light rounded-pill px-4">
+                                В корзину
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

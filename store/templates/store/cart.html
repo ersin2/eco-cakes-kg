@@ -1,0 +1,86 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div class="container fade-up" style="padding-top: 130px; min-height: 80vh;">
+    
+    <h2 class="display-5 mb-5 text-white">Ваш Заказ</h2>
+
+    {% if not cart_items %}
+        <div class="text-center py-5">
+            <i class="fas fa-shopping-basket fa-5x mb-4" style="color: var(--gold); opacity: 0.3;"></i>
+            <h3 class="text-white">Корзина пуста</h3>
+            <p class="text-muted mb-4">Вкуснейшие десерты ждут вас.</p>
+            <a href="{% url 'home' %}#shop" class="btn btn-luxury">В каталог</a>
+        </div>
+    {% else %}
+        <div class="row g-5">
+            <div class="col-lg-8">
+                {% for item in cart_items %}
+                <div class="d-flex align-items-center p-3 mb-3 card-hover" 
+                     style="background: #111; border-radius: 20px; border: 1px solid #333;">
+                    
+                    <div style="width: 100px; height: 100px; flex-shrink: 0;">
+                        {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" class="w-100 h-100 object-fit-cover" style="border-radius: 50%;">
+                        {% else %}
+                            <div class="w-100 h-100 bg-secondary rounded-circle"></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="ms-4 flex-grow-1">
+                        <h5 class="text-white mb-1">{{ item.product.name }}</h5>
+                        <div class="small mb-2" style="color: #bbb;">
+                             {{ item.product.calories }} ккал / 100г
+                        </div>
+                        <h5 style="color: var(--gold);">RM {{ item.product.price }}</h5>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center px-3" 
+                         style="background: #222; border-radius: 30px; padding: 5px 10px; border: 1px solid #444;">
+                        
+                        <a href="{% url 'remove_cart' item.product.id %}" class="text-white px-2 py-1 hover-gold">
+                            <i class="fas fa-minus small"></i>
+                        </a>
+                        
+                        <span class="text-white fw-bold mx-3 fs-5">{{ item.quantity }}</span>
+                        
+                        <a href="{% url 'add_cart' item.product.id %}" class="text-white px-2 py-1 hover-gold">
+                            <i class="fas fa-plus small"></i>
+                        </a>
+                    </div>
+
+                    <div class="ms-4">
+                        <a href="{% url 'remove_cart_item' item.product.id %}" class="btn btn-outline-danger border-0 btn-sm" onclick="return confirm('Удалить этот торт?');">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="p-4" style="background: #111; border-radius: 20px; border: 1px solid var(--gold);">
+                    <h4 class="mb-4 text-white" style="font-family: 'Playfair Display', serif;">Сумма заказа</h4>
+                    
+                    <div class="d-flex justify-content-between mb-3 text-white fs-5">
+                        <span>Всего:</span>
+                        <span>RM {{ total }}</span>
+                    </div>
+                    
+                    <hr style="border-color: #444;">
+                    
+                    <a href="{% url 'checkout' %}" class="btn btn-luxury w-100 py-3 mt-2">
+    Оплатить
+</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .hover-gold:hover { color: var(--gold) !important; cursor: pointer; }
+</style>
+{% endblock %}

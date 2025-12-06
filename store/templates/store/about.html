@@ -1,0 +1,153 @@
+{% extends 'store/base.html' %}
+
+{% block title %}О нас{% endblock %}
+
+{% block content %}
+<div style="
+    position: relative; height: 60vh; min-height: 400px;
+    background: #000; display: flex; align-items: center;
+    justify-content: center; text-align: center;
+">
+    <div style="
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop');
+        background-size: cover; background-position: center; opacity: 0.5;
+    "></div>
+    
+    <div class="container position-relative fade-up" style="z-index: 2;">
+        <h1 class="display-2 fw-bold text-white mb-3" style="font-family: 'Playfair Display', serif;">Наша Философия</h1>
+        <p class="lead text-white-50 mx-auto fs-4" style="max-width: 700px;">
+            Мы создаем еду, которая дарит радость и здоровье.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row align-items-center py-5">
+        <div class="col-lg-6 mb-5 mb-lg-0 fade-up">
+            <h2 class="display-5 text-white mb-4" style="font-family: 'Playfair Display', serif;">Больше, чем сладости</h2>
+            <p class="text-white-50 fs-5 mb-4" style="line-height: 1.8;">
+                Eco Cakes — это не только про десерты. Мы понимаем, что здоровое питание должно быть вкусным и сытным.
+            </p>
+            <p class="text-white mb-4 fs-5">
+                Попробуйте наши новинки:
+            </p>
+            <ul class="list-unstyled text-white fs-5 space-y-2">
+                <li class="mb-3 d-flex align-items-center">
+                    <i class="fas fa-bread-slice text-warning me-3 fa-lg"></i>
+                    <span><strong>ПП Самса:</strong> Цельнозерновая мука, сочная курица, минимум жира.</span>
+                </li>
+                <li class="mb-3 d-flex align-items-center">
+                    <i class="fas fa-coffee text-warning me-3 fa-lg"></i>
+                    <span><strong>Кофе & Матча:</strong> Идеальные напитки на альтернативном молоке.</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2670&auto=format&fit=crop" 
+                     class="w-100 rounded-4 shadow-lg img-fluid" 
+                     style="opacity: 0.95; filter: brightness(0.9); transform: rotate(2deg); border: 1px solid #333; object-fit: cover; height: 400px;">
+                
+                <div style="position: absolute; bottom: -20px; left: -20px; background: var(--gold); color: black; padding: 10px 20px; font-weight: bold; border-radius: 50px;">
+                    Хит продаж!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 py-5 fade-up">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-4 text-white" style="font-family: 'Playfair Display', serif;">Наши Творения</h2>
+            <div style="width: 60px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 bg-transparent card-hover">
+                <div style="height: 350px; overflow: hidden;" class="rounded-4 position-relative">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2589&auto=format&fit=crop" class="w-100 h-100 object-fit-cover hover-scale">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <h4 class="text-white text-center m-0">Авторские Торты</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 bg-transparent card-hover">
+                <div style="height: 350px; overflow: hidden;" class="rounded-4 position-relative">
+                    <img src="https://avatars.mds.yandex.net/i?id=66304dbe5533bbf5c0088d419884182be80227e7-6367247-images-thumbs&n=13" class="w-100 h-100 object-fit-cover hover-scale">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <h4 class="text-white text-center m-0">Ручная Лепка & Выпечка</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 bg-transparent card-hover">
+                <div style="height: 350px; overflow: hidden;" class="rounded-4 position-relative">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=2574&auto=format&fit=crop" class="w-100 h-100 object-fit-cover hover-scale">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <h4 class="text-white text-center m-0">Спешелти Кофе</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background: #0a0a0a; border-top: 1px solid #222;" class="py-5 mt-5">
+    <div class="container py-5 text-center">
+        <h2 class="display-4 text-white mb-5" style="font-family: 'Playfair Display', serif;">Свяжитесь с нами</h2>
+        
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-4 fade-up">
+                <a href="tel:+996559411114" class="text-decoration-none">
+                    <div class="p-5 border border-secondary rounded-4 h-100 bg-black card-hover contact-card">
+                        <i class="fas fa-phone-alt fa-3x mb-4" style="color: var(--gold);"></i>
+                        <h4 class="text-white">Позвонить</h4>
+                        <p class="text-white-50 mt-2 fs-5">+996 559 411 114</p>
+                        <span class="btn btn-sm btn-outline-light rounded-pill mt-3">Набрать</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 fade-up" style="animation-delay: 0.1s;">
+                <a href="https://www.google.com/maps/search/?api=1&query=Бишкек+улица+Горького+208А" target="_blank" class="text-decoration-none">
+                    <div class="p-5 border border-secondary rounded-4 h-100 bg-black card-hover contact-card">
+                        <i class="fas fa-map-marker-alt fa-3x mb-4" style="color: var(--gold);"></i>
+                        <h4 class="text-white">Найти нас</h4>
+                        <p class="text-white-50 mt-2 fs-5">г. Бишкек,<br>ул. Горького 208А</p>
+                        <span class="btn btn-sm btn-outline-light rounded-pill mt-3">Открыть карту</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 fade-up" style="animation-delay: 0.2s;">
+                <a href="https://www.instagram.com/eco.cakes.kg?igsh=dDdwNnlxbWI0dXZv" target="_blank" class="text-decoration-none">
+                    <div class="p-5 border border-secondary rounded-4 h-100 bg-black card-hover contact-card">
+                        <i class="fab fa-instagram fa-3x mb-4" style="color: var(--gold);"></i>
+                        <h4 class="text-white">Instagram</h4>
+                        <p class="text-white-50 mt-2 fs-5">@eco.cakes.kg</p>
+                        <span class="btn btn-sm btn-outline-light rounded-pill mt-3">Подписаться</span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-scale { transition: transform 0.6s ease; }
+    .hover-scale:hover { transform: scale(1.1); }
+    .contact-card { transition: all 0.3s ease; }
+    .contact-card:hover { 
+        background: #151515 !important; 
+        border-color: var(--gold) !important;
+        transform: translateY(-10px);
+    }
+</style>
+{% endblock %}

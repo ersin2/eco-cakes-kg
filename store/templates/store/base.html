@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eco Cakes | Luxury</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg-dark: #050505;
+            --text-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Playfair Display', serif; }
+
+        /* НАВИГАЦИЯ */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+        }
+        .navbar-brand span { color: var(--gold); font-style: italic; }
+
+        /* АНИМАЦИЯ МЕНЮ */
+        .nav-link-anim {
+            position: relative;
+            color: #fff !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .nav-link-anim::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link-anim:hover::after { width: 100%; }
+        .nav-link-anim:hover { color: var(--gold) !important; }
+
+        /* 👇👇👇 ВОТ ЭТО Я ВЕРНУЛ! АНИМАЦИЯ ПОДЪЕМА 👇👇👇 */
+        .card-hover {
+            transition: all 0.4s ease;
+            border: 1px solid #222;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02); /* Поднимаем и чуть увеличиваем */
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 10;
+            cursor: pointer;
+        }
+        /* 👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆 */
+
+        /* Глобальные анимации */
+        .fade-up {
+            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0; transform: translateY(20px);
+        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        .btn-luxury {
+            background: linear-gradient(135deg, #D4AF37, #F3E5AB);
+            color: #000; border: none; border-radius: 50px;
+            padding: 12px 35px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; font-size: 0.8rem; transition: 0.3s;
+        }
+        .btn-luxury:hover {
+            transform: scale(1.05); color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-3" href="{% url 'home' %}">
+                Eco <span>Cakes</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-4 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-anim text-uppercase" href="{% url 'home' %}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-anim text-uppercase" href="{% url 'home' %}#shop">Меню</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-anim text-uppercase" href="{% url 'about' %}">О нас</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="{% url 'cart' %}" class="btn btn-outline-light border-0 rounded-circle p-2 position-relative">
+                            <i class="fas fa-shopping-bag fa-lg"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

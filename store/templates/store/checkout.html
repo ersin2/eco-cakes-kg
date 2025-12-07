@@ -196,4 +196,89 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 </style>
+<style>
+    /* 1. ГЛАВНЫЙ ФИКС ПОЛЕЙ ВВОДА */
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="number"],
+    form textarea,
+    .form-control {
+        background-color: #000 !important;      /* Жестко черный фон */
+        border: 1px solid #444 !important;      /* Серая рамка */
+        color: white !important;                /* Белый текст */
+        height: 55px !important;
+        width: 100% !important;
+        border-radius: 10px !important;
+        padding: 0 15px !important;
+        font-size: 16px !important;
+        box-shadow: none !important;
+        outline: none !important;
+        -webkit-appearance: none;               /* Убираем стили браузера */
+    }
+
+    /* 👇 МАГИЯ ПРОТИВ БЕЛЫХ КВАДРАТОВ (AUTOFILL) 👇 */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+        -webkit-text-fill-color: white !important;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Поле Комментария */
+    form textarea {
+        height: 120px !important;
+        padding-top: 15px !important;
+    }
+
+    /* Фокус (при нажатии) */
+    form input:focus, form textarea:focus {
+        border-color: var(--gold) !important;
+        background-color: #050505 !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1) !important;
+    }
+
+    .input-label {
+        color: #888;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 600;
+    }
+
+    /* Карточка справа */
+    .summary-card {
+        background: #0f0f0f;
+        border: 1px solid #222;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    
+    .cart-scroll { max-height: 250px; overflow-y: auto; }
+
+    /* Кнопки оплаты */
+    .btn-payment {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #333;
+        border-radius: 12px;
+        background: transparent;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .btn-payment span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
+
+    input[type="radio"]:checked + .btn-payment {
+        border-color: var(--gold);
+        background-color: rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
+    }
+</style>
 {% endblock %}

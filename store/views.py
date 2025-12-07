@@ -117,6 +117,67 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
     except ObjectDoesNotExist:
+        # 🔥 ЗАЩИТА 1: Если корзины нет, делаем пустой список, а не None
+        cart_items = []
+
+    if request.method == 'POST':
+        # 🔥 ЗАЩИТА 2: Если товаров нет, отправляем в каталог, чтобы не было ошибки
+        if not cart_items:
+            return redirect('store')
+
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            data = Order()
+            data.first_name = form.cleaned_data['first_name']
+            data.last_name = form.cleaned_data['last_name']
+            data.phone = form.cleaned_data['phone']
+            data.email = form.cleaned_data['email']
+            data.address = form.cleaned_data['address']
+            data.city = form.cleaned_data['city']
+            data.note = form.cleaned_data['note']
+            data.payment_method = form.cleaned_data['payment_method']
+            data.total = total
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+
+            # Сохраняем товары
+            for item in cart_items:
+                order_product = OrderProduct()
+                order_product.order_id = data.id
+                order_product.product_id = item.product_id
+                order_product.quantity = item.quantity
+                order_product.product_price = item.product.price
+                order_product.ordered = True
+                order_product.save()
+
+            # Очищаем корзину после заказа
+            CartItem.objects.filter(cart=cart).delete()
+
+            # Перенаправляем
+            if data.payment_method == 'Card':
+                return redirect('payment', order_id=data.id)
+            else:
+                PHONE_NUMBER = "996559411114"
+                msg_cash = f"👋 Новый заказ #{data.id}\n👤 {data.first_name}\n📞 {data.phone}\n💰 {total} с.\n💳 Оплата: Наличные\n📍 Адрес: {data.address}"
+                whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg_cash)}"
+                return redirect(whatsapp_url)
+
+    else:
+        form = OrderForm()
+
+    context = {
+        'cart_items': cart_items,
+        'total': total,
+        'form': form,
+    }
+    return render(request, 'store/checkout.html', context)
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price * cart_item.quantity)
+            quantity += cart_item.quantity
+    except ObjectDoesNotExist:
         # Если корзины нет, создаем пустой список, чтобы не было ошибки NoneType
         cart_items = []
 

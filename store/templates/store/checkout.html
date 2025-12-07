@@ -110,118 +110,27 @@
 </div>
 
 <style>
-    /* 🌟 ЗОЛОТОЙ ЗАГОЛОВОК (НОВОЕ) */
-    .gold-title {
-        font-family: 'Playfair Display', serif;
-        color: var(--gold);
-        font-size: 2rem;
-        /* Легкое свечение */
-        text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        /* Анимация пульсации */
-        animation: glow 3s infinite alternate;
-    }
-
-    @keyframes glow {
-        from { text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
-        to { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
-    }
-
-    /* ЖЕСТКИЕ СТИЛИ ДЛЯ ПОЛЕЙ (Оставляем как было, раз тебе понравилось) */
+     /* ФИКС ДЛЯ ПОЛЕЙ ВВОДА */
     form input[type="text"],
     form input[type="email"],
     form input[type="number"],
     form textarea,
     .form-control {
-        background-color: transparent !important;
-        border: 1px solid #444 !important;
-        color: white !important;
-        height: 55px !important;
-        width: 100% !important;
-        border-radius: 10px !important;
-        padding: 0 15px !important;
-        font-size: 16px !important;
-        box-shadow: none !important;
-        outline: none !important;
-    }
-
-    form textarea {
-        height: 120px !important;
-        padding-top: 15px !important;
-    }
-
-    form input:focus, form textarea:focus {
-        border-color: var(--gold) !important;
-        background-color: #0a0a0a !important;
-        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1) !important;
-    }
-
-    .input-label {
-        color: #888;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 8px;
-        display: block;
-        font-weight: 600;
-    }
-
-    .summary-card {
-        background: #0f0f0f;
-        border: 1px solid #222;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-
-    .cart-scroll { max-height: 250px; overflow-y: auto; }
-
-    .btn-payment {
-        width: 100%;
-        height: 100px;
-        border: 1px solid #333;
-        border-radius: 12px;
-        background: transparent;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .btn-payment span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
-
-    input[type="radio"]:checked + .btn-payment {
-        border-color: var(--gold);
-        background-color: rgba(212, 175, 55, 0.1);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-</style>
-<style>
-    /* 1. ГЛАВНЫЙ ФИКС ПОЛЕЙ ВВОДА */
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="number"],
-    form textarea,
-    .form-control {
-        background-color: #000 !important;      /* Жестко черный фон */
+        background-color: #000 !important;      /* Черный фон */
         border: 1px solid #444 !important;      /* Серая рамка */
         color: white !important;                /* Белый текст */
         height: 55px !important;
-        width: 100% !important;
         border-radius: 10px !important;
         padding: 0 15px !important;
-        font-size: 16px !important;
-        box-shadow: none !important;
         outline: none !important;
-        -webkit-appearance: none;               /* Убираем стили браузера */
     }
 
-    /* 👇 МАГИЯ ПРОТИВ БЕЛЫХ КВАДРАТОВ (AUTOFILL) 👇 */
+    /* 🔥 УБИРАЕМ БЕЛЫЙ ФОН АВТОЗАПОЛНЕНИЯ (Самое важное) */
     input:-webkit-autofill,
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+        -webkit-box-shadow: 0 0 0 30px #000 inset !important; /* Внутренняя тень перекрывает белый цвет */
         -webkit-text-fill-color: white !important;
         transition: background-color 5000s ease-in-out 0s;
     }
@@ -232,33 +141,13 @@
         padding-top: 15px !important;
     }
 
-    /* Фокус (при нажатии) */
+    /* Фокус (Золотая рамка при нажатии) */
     form input:focus, form textarea:focus {
         border-color: var(--gold) !important;
-        background-color: #050505 !important;
-        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1) !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.2) !important;
     }
 
-    .input-label {
-        color: #888;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 8px;
-        display: block;
-        font-weight: 600;
-    }
-
-    /* Карточка справа */
-    .summary-card {
-        background: #0f0f0f;
-        border: 1px solid #222;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-    
-    .cart-scroll { max-height: 250px; overflow-y: auto; }
-
-    /* Кнопки оплаты */
+    /* Стили для кнопок оплаты */
     .btn-payment {
         width: 100%;
         height: 100px;
@@ -273,12 +162,11 @@
         cursor: pointer;
         transition: all 0.3s ease;
     }
-    .btn-payment span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
 
+    /* Выбранная кнопка оплаты */
     input[type="radio"]:checked + .btn-payment {
         border-color: var(--gold);
         background-color: rgba(212, 175, 55, 0.1);
-        transform: translateY(-2px);
-    }
+    }   
 </style>
 {% endblock %}

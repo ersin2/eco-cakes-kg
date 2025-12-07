@@ -122,6 +122,68 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
+            # 1. Создаем заказ
+            data = Order()
+            data.first_name = form.cleaned_data['first_name']
+            data.last_name = form.cleaned_data['last_name']
+            data.phone = form.cleaned_data['phone']
+            data.email = form.cleaned_data['email']
+            data.address = form.cleaned_data['address']
+            data.city = form.cleaned_data['city']
+            data.note = form.cleaned_data['note']
+            
+            # 👇 2. ВАЖНО: Запоминаем выбор оплаты
+            data.payment_method = form.cleaned_data['payment_method']
+            
+            data.total = total
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+
+            # Сохраняем товары
+            for item in cart_items:
+                order_product = OrderProduct()
+                order_product.order_id = data.id
+                order_product.product_id = item.product_id
+                order_product.quantity = item.quantity
+                order_product.product_price = item.product.price
+                order_product.ordered = True
+                order_product.save()
+
+            # Очищаем корзину
+            CartItem.objects.filter(cart=cart).delete()
+
+            # 👇 3. ЛОГИКА ПЕРЕНАПРАВЛЕНИЯ
+            if data.payment_method == 'Card':
+                # Если выбрали Карту -> Идем на страницу с QR-кодом
+                return redirect('payment', order_id=data.id)
+            else:
+                # Если Наличные -> Сразу в WhatsApp
+                PHONE_NUMBER = "996559411114"
+                msg = f"👋 Новый заказ #{data.id}\n👤 {data.first_name}\n💰 {total} с.\n💳 Оплата: Наличные"
+                whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg)}"
+                return redirect(whatsapp_url)
+
+    else:
+        form = OrderForm()
+
+    context = {
+        'cart_items': cart_items,
+        'total': total,
+        'form': form,
+    }
+    return render(request, 'store/checkout.html', context)
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price * cart_item.quantity)
+            quantity += cart_item.quantity
+    except ObjectDoesNotExist:
+        pass
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
             # 1. СНАЧАЛА СОЗДАЕМ ЗАКАЗ (Обязательно первой строкой!)
             data = Order()
             
@@ -242,7 +304,17 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             # Кодируем текст для ссылки (превращаем пробелы в %20 и т.д.)
             whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg)}"
             
-            return redirect(whatsapp_url)
+            # ... (код выше: сохранение order_product, очистка корзины) ...
+
+            # 👇 ЛОГИКА: Куда отправлять?
+            if data.payment_method == 'Card':
+                # Если Онлайн -> На страницу с QR-кодом
+                return redirect('payment', order_id=data.id)
+            else:
+                # Если Наличные -> Сразу в WhatsApp (как раньше)
+                msg_cash = f"👋 Новый заказ #{data.id}\n👤 {data.first_name}\n💰 {total} с.\n💳 Оплата: Наличные"
+                whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg_cash)}"
+                return redirect(whatsapp_url)
 
     else:
         form = OrderForm()
@@ -304,3 +376,23 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     return render(request, 'store/checkout.html', context)
 def about(request):
     return render(request, 'store/about.html')
+def payment(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    
+    PHONE_NUMBER = "996559411114"
+    
+    # 👇 ТЕКСТ ДЛЯ ТЕТИ (С предупреждением "ПРОВЕРЬ")
+    msg = f"⚠️ ПРОВЕРКА ОПЛАТЫ (Заказ #{order.id})\n"
+    msg += f"👤 Клиент: {order.first_name} {order.last_name}\n"
+    msg += f"💰 Сумма: *{order.total} сом*\n"
+    msg += f"💳 Оплата: MBank / Онлайн\n\n"
+    msg += f"❗ Клиент сообщил об оплате.\n"
+    msg += f"Пожалуйста, зайдите в MBank и проверьте, пришли ли деньги."
+    
+    whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg)}"
+
+    context = {
+        'order': order,
+        'whatsapp_url': whatsapp_url,
+    }
+    return render(request, 'store/payment.html', context)

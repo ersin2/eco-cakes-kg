@@ -377,6 +377,27 @@ def checkout(request, total=0, quantity=0, cart_items=None):
 def about(request):
     return render(request, 'store/about.html')
 def payment(request, order_id):
+    # Получаем заказ по номеру
+    order = get_object_or_404(Order, id=order_id)
+    
+    PHONE_NUMBER = "996559411114"
+    
+    # 👇 ГЕНЕРИРУЕМ СООБЩЕНИЕ ДЛЯ WHATSAPP
+    msg = f"⚠️ ПРОВЕРКА ОПЛАТЫ (Заказ #{order.id})\n"
+    msg += f"👤 Клиент: {order.first_name} {order.last_name}\n"
+    msg += f"💰 Сумма: *{order.total} сом*\n"
+    msg += f"💳 Оплата: O!Business / QR / Счет\n\n"
+    msg += f"❗ Клиент подтвердил оплату.\n"
+    msg += f"Пожалуйста, зайдите в приложение O!Business и проверьте поступление средств."
+    
+    # Создаем ссылку
+    whatsapp_url = f"https://wa.me/{PHONE_NUMBER}?text={quote(msg)}"
+
+    context = {
+        'order': order,
+        'whatsapp_url': whatsapp_url,
+    }
+    return render(request, 'store/payment.html', context)
     order = get_object_or_404(Order, id=order_id)
     
     PHONE_NUMBER = "996559411114"

@@ -15,10 +15,7 @@
         
         <div class="row g-5">
             <div class="col-lg-7 fade-up" style="animation-delay: 0.1s;">
-                
-                <h3 class="mb-4 gold-title">
-                    <i class="fas fa-truck me-2"></i> Детали доставки
-                </h3>
+                <h3 class="mb-4 gold-title"><i class="fas fa-truck me-2"></i> Детали доставки</h3>
                 
                 <div class="row g-3">
                     <div class="col-6">
@@ -35,7 +32,7 @@
                         {{ form.phone }}
                     </div>
                     <div class="col-6">
-                        <label class="input-label">Email</label>
+                        <label class="input-label">Email (необязательно)</label>
                         {{ form.email }}
                     </div>
 
@@ -44,12 +41,12 @@
                         {{ form.city }}
                     </div>
                     <div class="col-12">
-                        <label class="input-label">Точный адрес</label>
+                        <label class="input-label">Точный адрес (Улица, дом, кв.)</label>
                         {{ form.address }}
                     </div>
                     
                     <div class="col-12">
-                        <label class="input-label">Комментарий</label>
+                        <label class="input-label">Комментарий к заказу</label>
                         {{ form.note }}
                     </div>
                 </div>
@@ -71,8 +68,8 @@
                         {% endfor %}
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-5 pt-2">
-                        <span class="h5 text-white mb-0">Итого:</span>
+                    <div class="d-flex justify-content-between align-items-center mb-5 pt-2 border-top border-secondary pt-4">
+                        <span class="h5 text-white mb-0">Итого к оплате:</span>
                         <span class="h3 mb-0" style="color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">{{ total }} сом</span>
                     </div>
 
@@ -80,15 +77,15 @@
                         <label class="input-label mb-3">Способ оплаты</label>
                         <div class="d-flex gap-3">
                             <div class="flex-fill">
-                                <input class="form-check-input d-none" type="radio" name="payment_method" id="payCash" value="Cash" checked>
-                                <label class="btn-payment" for="payCash">
+                                {{ form.payment_method.0.tag }}
+                                <label class="btn-payment" for="{{ form.payment_method.0.id_for_label }}">
                                     <i class="fas fa-money-bill-wave mb-2 fs-4" style="color: #4cd137;"></i>
                                     <span>Наличные</span>
                                 </label>
                             </div>
                             <div class="flex-fill">
-                                <input class="form-check-input d-none" type="radio" name="payment_method" id="payCard" value="Card">
-                                <label class="btn-payment" for="payCard">
+                                {{ form.payment_method.1.tag }}
+                                <label class="btn-payment" for="{{ form.payment_method.1.id_for_label }}">
                                     <i class="fas fa-credit-card mb-2 fs-4" style="color: #00a8ff;"></i>
                                     <span>Онлайн / Карта</span>
                                 </label>
@@ -101,7 +98,7 @@
                     </button>
                     
                     <p class="text-center mt-3 mb-0 small text-muted">
-                        <i class="fas fa-lock me-1"></i> Данные защищены
+                        <i class="fas fa-lock me-1"></i> Безопасная обработка данных
                     </p>
                 </div>
             </div>
@@ -110,44 +107,76 @@
 </div>
 
 <style>
-     /* ФИКС ДЛЯ ПОЛЕЙ ВВОДА */
+    /* ЗОЛОТОЙ ЗАГОЛОВОК */
+    .gold-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold);
+        font-size: 1.75rem;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ЖЕСТКИЕ СТИЛИ ДЛЯ ПОЛЕЙ (ЧТОБЫ НЕ ПЛЯСАЛИ) */
     form input[type="text"],
     form input[type="email"],
     form input[type="number"],
     form textarea,
     .form-control {
-        background-color: #000 !important;      /* Черный фон */
-        border: 1px solid #444 !important;      /* Серая рамка */
-        color: white !important;                /* Белый текст */
+        background-color: #000 !important; /* Черный фон */
+        border: 1px solid #444 !important;
+        color: white !important;
         height: 55px !important;
+        width: 100% !important;
         border-radius: 10px !important;
         padding: 0 15px !important;
+        font-size: 16px !important;
         outline: none !important;
+        box-shadow: none !important;
     }
 
-    /* 🔥 УБИРАЕМ БЕЛЫЙ ФОН АВТОЗАПОЛНЕНИЯ (Самое важное) */
+    /* ФИКС БЕЛЫХ КВАДРАТОВ (Автозаполнение) */
     input:-webkit-autofill,
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #000 inset !important; /* Внутренняя тень перекрывает белый цвет */
+        -webkit-box-shadow: 0 0 0 30px #000 inset !important;
         -webkit-text-fill-color: white !important;
         transition: background-color 5000s ease-in-out 0s;
     }
 
-    /* Поле Комментария */
     form textarea {
         height: 120px !important;
         padding-top: 15px !important;
     }
 
-    /* Фокус (Золотая рамка при нажатии) */
     form input:focus, form textarea:focus {
         border-color: var(--gold) !important;
         box-shadow: 0 0 10px rgba(212, 175, 55, 0.2) !important;
     }
 
-    /* Стили для кнопок оплаты */
+    .input-label {
+        color: #888;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 600;
+    }
+
+    .summary-card {
+        background: #0f0f0f;
+        border: 1px solid #222;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .cart-scroll { max-height: 250px; overflow-y: auto; }
+
+    /* Скрываем стандартные радио-кнопки */
+    form input[type="radio"] {
+        display: none;
+    }
+
+    /* Кнопки оплаты */
     .btn-payment {
         width: 100%;
         height: 100px;
@@ -162,11 +191,13 @@
         cursor: pointer;
         transition: all 0.3s ease;
     }
+    .btn-payment span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
 
-    /* Выбранная кнопка оплаты */
-    input[type="radio"]:checked + .btn-payment {
+    /* Выбранная кнопка */
+    form input[type="radio"]:checked + .btn-payment {
         border-color: var(--gold);
         background-color: rgba(212, 175, 55, 0.1);
-    }   
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
 </style>
 {% endblock %}

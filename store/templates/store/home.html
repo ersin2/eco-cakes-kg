@@ -3,6 +3,42 @@
 {% block title %}Collection{% endblock %}
 
 {% block content %}
+<div id="cakeCarousel" class="carousel slide carousel-fade mb-5 fade-up" data-bs-ride="carousel">
+    <div class="carousel-inner rounded-4 shadow-lg">
+        
+        <div class="carousel-item active" data-bs-interval="3000">
+            <img src="{% static 'img/slide1.jpg' %}" class="d-block w-100" alt="Вкусные торты" style="height: 400px; object-fit: cover; filter: brightness(0.7);">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 style="font-family: 'Playfair Display', serif; color: var(--gold);">Эко-Торты Бишкек</h2>
+                <p>Натуральные ингредиенты и неповторимый вкус</p>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'img/slide2.jpg' %}" class="d-block w-100" alt="Праздничные торты" style="height: 400px; object-fit: cover; filter: brightness(0.7);">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 style="font-family: 'Playfair Display', serif; color: var(--gold);">Праздник в каждом кусочке</h2>
+                <p>Идеально для дня рождения и свадеб</p>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'img/slide3.jpg' %}" class="d-block w-100" alt="Десерты" style="height: 400px; object-fit: cover; filter: brightness(0.7);">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 style="font-family: 'Playfair Display', serif; color: var(--gold);">Закажите онлайн</h2>
+                <p>Быстрая доставка и оплата через MBank</p>
+            </div>
+        </div>
+
+    </div>
+    
+    <button class="carousel-control-prev" type="button" data-bs-target="#cakeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cakeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+</div>
     <div style="
         position: relative;
         height: 100vh;

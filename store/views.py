@@ -5,6 +5,7 @@ from .models import Product, Cart, CartItem, Order, OrderProduct, Category
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import OrderForm
 from urllib.parse import quote
+from django.contrib import messages
 # Вспомогательная функция (поэтому начинается с подчеркивания)
 def _cart_id(request):
     cart = request.session.session_key
@@ -64,7 +65,15 @@ def add_cart(request, product_id):
         cart_item.save()
     
     # 4. Возвращаем пользователя обратно на главную (пока что)
-    return redirect('cart')
+    # ... (код добавления товара выше) ...
+    
+    # 👇 ВМЕСТО redirect('cart') ПИШЕМ ЭТО:
+    
+    # 1. Показываем всплывающее сообщение
+    messages.success(request, f'Товар добавлен в корзину! 🍰')
+    
+    # 2. Возвращаем пользователя на ТУ ЖЕ страницу, где он был
+    return redirect(request.META.get('HTTP_REFERER', 'store'))
 # Create your views here.
 
 def cart(request, total=0, quantity=0, cart_items=None):

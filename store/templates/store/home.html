@@ -4,79 +4,76 @@
 {% block content %}
 
 <div id="cakeCarousel" class="carousel slide carousel-fade mb-5 fade-up" data-bs-ride="carousel">
-    <div class="carousel-inner rounded-4 shadow-lg" style="border: 1px solid #333;">
+    <div class="carousel-inner rounded-bottom-4 shadow-lg" style="border-bottom: 1px solid #333;">
         
         <div class="carousel-item active" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop" class="d-block w-100" alt="Торт 1" style="height: 500px; object-fit: cover; filter: brightness(0.6);">
-            <div class="carousel-caption d-none d-md-block">
-                <h1 class="display-4 fw-bold" style="font-family: 'Playfair Display', serif; color: var(--gold); text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Эко-Торты Бишкек</h1>
-                <p class="lead fs-4">Только натуральные ингредиенты и премиальный вкус</p>
-                <a href="#products" class="btn btn-luxury mt-3 px-5 py-2">Смотреть Меню</a>
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
+                 class="d-block w-100" alt="Торт 1" 
+                 style="height: 60vh; min-height: 400px; object-fit: cover; filter: brightness(0.5);">
+            
+            <div class="carousel-caption d-block h-100 d-flex flex-column justify-content-center align-items-center top-0">
+                <h1 class="display-3 fw-bold mb-3 slide-title">Эко-Торты Бишкек</h1>
+                <p class="lead fs-5 mb-4 slide-text text-white-50">Натуральные ингредиенты • Премиальный вкус • Халал</p>
+                <a href="#products" class="btn btn-luxury px-5 py-3 rounded-pill shadow-lg text-uppercase fw-bold" style="letter-spacing: 2px;">
+                    Выбрать Десерт
+                </a>
             </div>
         </div>
 
         <div class="carousel-item" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=1000&auto=format&fit=crop" class="d-block w-100" alt="Торт 2" style="height: 500px; object-fit: cover; filter: brightness(0.6);">
-            <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-4 fw-bold" style="font-family: 'Playfair Display', serif; color: var(--gold); text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Праздник в каждом кусочке</h2>
-                <p class="lead fs-4">Идеально для дней рождения и свадеб</p>
-            </div>
-        </div>
-
-        <div class="carousel-item" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1000&auto=format&fit=crop" class="d-block w-100" alt="Торт 3" style="height: 500px; object-fit: cover; filter: brightness(0.6);">
-            <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-4 fw-bold" style="font-family: 'Playfair Display', serif; color: var(--gold); text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Быстрая Доставка</h2>
-                <p class="lead fs-4">Оплата онлайн через MBank и O!Деньги</p>
+            <img src="https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?q=80&w=1920&auto=format&fit=crop" 
+                 class="d-block w-100" alt="Торт 2" 
+                 style="height: 60vh; min-height: 400px; object-fit: cover; filter: brightness(0.5);">
+            
+            <div class="carousel-caption d-block h-100 d-flex flex-column justify-content-center align-items-center top-0">
+                <h2 class="display-3 fw-bold mb-3 slide-title">Искусство Вкуса</h2>
+                <p class="lead fs-5 mb-4 slide-text text-white-50">Идеально для свадеб, дней рождения и особых дат</p>
+                <a href="#products" class="btn btn-outline-light px-5 py-3 rounded-pill shadow-lg text-uppercase fw-bold border-2">
+                    Смотреть Каталог
+                </a>
             </div>
         </div>
 
     </div>
     
     <button class="carousel-control-prev" type="button" data-bs-target="#cakeCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded-circle p-4" aria-hidden="true"></span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#cakeCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded-circle p-4" aria-hidden="true"></span>
     </button>
 </div>
 
 <div id="products" class="container pb-5">
     <div class="text-center mb-5 fade-up">
-        <h2 class="display-4 text-white" style="font-family: 'Playfair Display', serif;">Наши Десерты</h2>
-        <div style="width: 80px; height: 3px; background: var(--gold); margin: 25px auto; box-shadow: 0 0 15px var(--gold);"></div>
+        <span class="text-warning small text-uppercase fw-bold tracking-wide">Меню</span>
+        <h2 class="display-4 text-white mt-2" style="font-family: 'Playfair Display', serif;">Наши Шедевры</h2>
+        <div style="width: 60px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for product in products %}
         <div class="col fade-up">
-            <div class="card h-100 product-card border-0 rounded-4 overflow-hidden position-relative">
+            <div class="card h-100 product-card border-0 rounded-4 overflow-hidden position-relative bg-dark">
                 
-                <div class="product-img-wrapper" style="height: 280px; overflow: hidden; position: relative;">
+                <div class="product-img-wrapper" style="height: 300px; overflow: hidden; position: relative;">
                     {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top w-100 h-100" alt="{{ product.name }}" style="object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+                    <img src="{{ product.image.url }}" class="card-img-top w-100 h-100" alt="{{ product.name }}" style="object-fit: cover;">
                     {% else %}
                     <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white-50">Нет фото</div>
                     {% endif %}
                     
-                    <div class="product-overlay d-flex align-items-center justify-content-center">
-                        <a href="{% url 'add_cart' product.id %}" class="btn btn-luxury rounded-pill px-4 py-2 shadow-lg scale-btn">
-                            <i class="fas fa-shopping-bag me-2"></i> В корзину
+                    <div class="product-overlay d-flex align-items-end justify-content-center pb-4">
+                        <a href="{% url 'add_cart' product.id %}" class="btn btn-light rounded-pill px-4 py-2 fw-bold shadow-lg scale-btn text-dark">
+                            + В корзину
                         </a>
                     </div>
                 </div>
 
-                <div class="card-body text-center p-4 d-flex flex-column" style="background: #111; border-top: 1px solid #222;">
-                    <h5 class="card-title mb-2 text-white fw-bold fs-4" style="font-family: 'Playfair Display', serif; letter-spacing: 0.5px;">{{ product.name }}</h5>
-                    
-                    <p class="card-text text-white-50 small mb-3 flex-grow-1" style="font-size: 0.9rem; line-height: 1.6;">
-                        {{ product.description|truncatewords:15 }}
-                    </p>
-                    
-                    <div class="d-flex justify-content-center align-items-center mt-3 pt-3 border-top border-secondary" style="--bs-border-opacity: .2;">
-                        <span class="text-warning fs-3 fw-bold me-2">{{ product.price }}</span>
-                        <span class="text-white-50 fs-5">сом</span>
-                    </div>
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title text-white fw-bold fs-4 mb-2" style="font-family: 'Playfair Display', serif;">{{ product.name }}</h5>
+                    <p class="card-text text-secondary small mb-3">{{ product.description|truncatewords:10 }}</p>
+                    <div class="text-warning fs-4 fw-bold">{{ product.price }} <span class="fs-6 text-muted">сом</span></div>
                 </div>
             </div>
         </div>
@@ -85,58 +82,56 @@
 </div>
 
 <style>
-    /* CSS МАГИЯ ДЛЯ КРАСОТЫ */
-    
-    /* Тень и свечение карточки */
-    .product-card {
-        transition: all 0.4s ease;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        background: #111;
+    /* Шрифты слайдера */
+    .slide-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold);
+        text-shadow: 0 4px 20px rgba(0,0,0,0.9);
     }
-    
-    .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.15); /* Золотое свечение */
+    .slide-text {
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        font-weight: 300;
+        letter-spacing: 1px;
     }
 
-    /* Анимация картинки */
+    /* Адаптивность текста для телефона */
+    @media (max-width: 768px) {
+        .slide-title { font-size: 2.5rem; }
+        .slide-text { font-size: 1rem; }
+        .carousel-item img { height: 50vh !important; min-height: 300px; }
+    }
+
+    /* Эффекты карточек */
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #0b0b0b; /* Глубокий черный */
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+    .product-img-wrapper img {
+        transition: transform 0.6s ease;
+    }
     .product-card:hover img {
-        transform: scale(1.1);
+        transform: scale(1.05);
         filter: brightness(0.7);
     }
-
-    /* Оверлей (кнопка появляется красиво) */
+    
+    /* Кнопка на карточке */
     .product-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.4);
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         opacity: 0;
-        transition: all 0.4s ease;
+        transition: opacity 0.3s ease;
     }
-    
     .product-card:hover .product-overlay {
         opacity: 1;
     }
-
-    /* Кнопка "В корзину" при наведении увеличивается */
-    .scale-btn:hover {
-        transform: scale(1.1);
-    }
-
-    /* Для мобильных: кнопка видна всегда (чуть-чуть), или делаем её доступной */
+    /* На телефоне кнопка видна всегда (или оверлей прозрачнее) */
     @media (max-width: 768px) {
-        .product-overlay {
-            opacity: 1;
-            background: transparent;
-            align-items: flex-end;
-            padding-bottom: 20px;
-        }
-        .product-card:hover {
-            transform: none;
-        }
+        .product-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
     }
 </style>
 

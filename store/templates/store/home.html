@@ -122,3 +122,22 @@
     }
 
     /* Кнопка "В корзину" при наведении увеличивается */
+    .scale-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* Для мобильных: кнопка видна всегда (чуть-чуть), или делаем её доступной */
+    @media (max-width: 768px) {
+        .product-overlay {
+            opacity: 1;
+            background: transparent;
+            align-items: flex-end;
+            padding-bottom: 20px;
+        }
+        .product-card:hover {
+            transform: none;
+        }
+    }
+</style>
+
+{% endblock %}

@@ -3,77 +3,140 @@
 
 {% block content %}
 
-<div id="cakeCarousel" class="carousel slide carousel-fade mb-5 fade-up" data-bs-ride="carousel">
-    <div class="carousel-inner rounded-bottom-4 shadow-lg" style="border-bottom: 1px solid #333;">
-        
+<style>
+    :root { --gold: #d4af37; }
+    
+    /* ЗОЛОТЫЕ СТИЛИ */
+    .text-gold { color: var(--gold) !important; }
+    
+    /* Кнопки и категории */
+    .btn-gold-outline {
+        color: var(--gold);
+        border: 2px solid var(--gold); /* Жирнее рамка */
+        background: transparent;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+    .btn-gold-outline:hover {
+        background: var(--gold);
+        color: #000;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+
+    /* ИНДИКАТОРЫ (ЛИНИИ КАК У SAMSUNG) */
+    .carousel-indicators {
+        bottom: 20px; /* Чуть выше от края */
+    }
+    .carousel-indicators [data-bs-target] {
+        background-color: #fff;
+        height: 4px;       /* Высота линии */
+        width: 30px;       /* Длина линии */
+        border: none;
+        border-radius: 2px;
+        opacity: 0.5;
+        margin: 0 5px;
+        transition: all 0.3s;
+    }
+    .carousel-indicators .active {
+        background-color: var(--gold) !important; /* Активная - ЗОЛОТАЯ */
+        opacity: 1;
+        width: 50px; /* Активная длиннее */
+    }
+
+    /* КАРТОЧКИ */
+    .product-card {
+        background: #0f0f0f;
+        border: 1px solid #333;
+        transition: transform 0.3s;
+    }
+    .product-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-5px);
+    }
+</style>
+
+<div id="cakeCarousel" class="carousel slide carousel-fade mb-4 fade-up" data-bs-ride="carousel">
+    
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner shadow-lg">
         <div class="carousel-item active" data-bs-interval="4000">
             <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
-                 class="d-block w-100" alt="Торт 1" 
-                 style="height: 60vh; min-height: 400px; object-fit: cover; filter: brightness(0.5);">
+                 class="d-block w-100 mobile-img" alt="Торт 1">
             
-            <div class="carousel-caption d-block h-100 d-flex flex-column justify-content-center align-items-center top-0">
-                <h1 class="display-3 fw-bold mb-3 slide-title">Эко-Торты Бишкек</h1>
-                <p class="lead fs-5 mb-4 slide-text text-white-50">Натуральные ингредиенты • Премиальный вкус • Халал</p>
-                <a href="#products" class="btn btn-luxury px-5 py-3 rounded-pill shadow-lg text-uppercase fw-bold" style="letter-spacing: 2px;">
-                    Выбрать Десерт
-                </a>
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                <h1 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Eco Cakes</h1>
+                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">НАТУРАЛЬНЫЙ ВКУС</p>
+                <a href="#menu" class="btn btn-gold-outline px-5 py-3 rounded-pill">Заказать</a>
             </div>
         </div>
 
         <div class="carousel-item" data-bs-interval="4000">
             <img src="https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?q=80&w=1920&auto=format&fit=crop" 
-                 class="d-block w-100" alt="Торт 2" 
-                 style="height: 60vh; min-height: 400px; object-fit: cover; filter: brightness(0.5);">
+                 class="d-block w-100 mobile-img" alt="Торт 2">
             
-            <div class="carousel-caption d-block h-100 d-flex flex-column justify-content-center align-items-center top-0">
-                <h2 class="display-3 fw-bold mb-3 slide-title">Искусство Вкуса</h2>
-                <p class="lead fs-5 mb-4 slide-text text-white-50">Идеально для свадеб, дней рождения и особых дат</p>
-                <a href="#products" class="btn btn-outline-light px-5 py-3 rounded-pill shadow-lg text-uppercase fw-bold border-2">
-                    Смотреть Каталог
-                </a>
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                <h2 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Праздник</h2>
+                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">СВАДЬБЫ И ТОИ</p>
+                <a href="#menu" class="btn btn-gold-outline px-5 py-3 rounded-pill">Меню</a>
             </div>
         </div>
-
+        
+        <div class="carousel-item" data-bs-interval="4000">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1920&auto=format&fit=crop" 
+                 class="d-block w-100 mobile-img" alt="Торт 3">
+            
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                <h2 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Доставка</h2>
+                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">ПО ВСЕМУ БИШКЕКУ</p>
+            </div>
+        </div>
     </div>
-    
+
     <button class="carousel-control-prev" type="button" data-bs-target="#cakeCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded-circle p-4" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded-circle p-3" aria-hidden="true"></span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#cakeCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded-circle p-4" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded-circle p-3" aria-hidden="true"></span>
     </button>
 </div>
 
-<div id="products" class="container pb-5">
+<div id="menu" class="container pb-5">
     <div class="text-center mb-5 fade-up">
-        <span class="text-warning small text-uppercase fw-bold tracking-wide">Меню</span>
-        <h2 class="display-4 text-white mt-2" style="font-family: 'Playfair Display', serif;">Наши Шедевры</h2>
-        <div style="width: 60px; height: 2px; background: var(--gold); margin: 20px auto;"></div>
+        <h2 class="display-4 text-white" style="font-family: 'Playfair Display', serif;">Наше Меню</h2>
+        <div style="width: 80px; height: 3px; background: var(--gold); margin: 20px auto; box-shadow: 0 0 15px var(--gold);"></div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for product in products %}
         <div class="col fade-up">
-            <div class="card h-100 product-card border-0 rounded-4 overflow-hidden position-relative bg-dark">
+            <div class="card h-100 product-card rounded-4 overflow-hidden">
                 
-                <div class="product-img-wrapper" style="height: 300px; overflow: hidden; position: relative;">
+                <div class="position-relative" style="height: 280px;">
                     {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top w-100 h-100" alt="{{ product.name }}" style="object-fit: cover;">
+                    <img src="{{ product.image.url }}" class="w-100 h-100" alt="{{ product.name }}" style="object-fit: cover;">
                     {% else %}
                     <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white-50">Нет фото</div>
                     {% endif %}
-                    
-                    <div class="product-overlay d-flex align-items-end justify-content-center pb-4">
-                        <a href="{% url 'add_cart' product.id %}" class="btn btn-light rounded-pill px-4 py-2 fw-bold shadow-lg scale-btn text-dark">
-                            + В корзину
-                        </a>
-                    </div>
                 </div>
 
                 <div class="card-body text-center p-4">
-                    <h5 class="card-title text-white fw-bold fs-4 mb-2" style="font-family: 'Playfair Display', serif;">{{ product.name }}</h5>
-                    <p class="card-text text-secondary small mb-3">{{ product.description|truncatewords:10 }}</p>
-                    <div class="text-warning fs-4 fw-bold">{{ product.price }} <span class="fs-6 text-muted">сом</span></div>
+                    <h5 class="card-title text-white fw-bold fs-4 mb-2 luxury-font">{{ product.name }}</h5>
+                    <p class="text-secondary small mb-3">{{ product.description|truncatewords:10 }}</p>
+                    
+                    <div class="text-gold fs-3 fw-bold mb-3" style="text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">
+                        {{ product.price }} <small class="fs-6">c.</small>
+                    </div>
+                    
+                    <a href="{% url 'add_cart' product.id %}" class="btn btn-gold-outline w-100 rounded-pill py-2">
+                        + В корзину
+                    </a>
                 </div>
             </div>
         </div>
@@ -82,56 +145,25 @@
 </div>
 
 <style>
-    /* Шрифты слайдера */
-    .slide-title {
-        font-family: 'Playfair Display', serif;
-        color: var(--gold);
-        text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-    }
-    .slide-text {
-        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
+    .luxury-font { font-family: 'Playfair Display', serif; }
 
-    /* Адаптивность текста для телефона */
-    @media (max-width: 768px) {
-        .slide-title { font-size: 2.5rem; }
-        .slide-text { font-size: 1rem; }
-        .carousel-item img { height: 50vh !important; min-height: 300px; }
-    }
-
-    /* Эффекты карточек */
-    .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background: #0b0b0b; /* Глубокий черный */
-    }
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-    }
-    .product-img-wrapper img {
-        transition: transform 0.6s ease;
-    }
-    .product-card:hover img {
-        transform: scale(1.05);
-        filter: brightness(0.7);
-    }
+    /* --- НАСТРОЙКИ КАРТИНКИ (САМОЕ ВАЖНОЕ) --- */
     
-    /* Кнопка на карточке */
-    .product-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        opacity: 0;
-        transition: opacity 0.3s ease;
+    /* 1. На Компьютере: Большая и красивая */
+    .mobile-img {
+        height: 600px;
+        object-fit: cover;
+        filter: brightness(0.55);
     }
-    .product-card:hover .product-overlay {
-        opacity: 1;
-    }
-    /* На телефоне кнопка видна всегда (или оверлей прозрачнее) */
+
+    /* 2. На Телефоне: МЕНЬШЕ ВЫСОТА, ЧТОБЫ БЫЛО ВИДНО ТОРТ */
     @media (max-width: 768px) {
-        .product-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+        .mobile-img {
+            height: 50vh !important; /* Было 80vh, стало 50vh (половина экрана) */
+            min-height: 400px;       /* Но не меньше этого */
+            object-fit: cover;
+            object-position: center; /* Центрируем торт */
+        }
     }
 </style>
 

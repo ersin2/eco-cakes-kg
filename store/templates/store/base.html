@@ -22,28 +22,87 @@
             color: white;
             /* Основной отступ для ПК */
             padding-top: 85px; 
+            /* Убрано: scroll-behavior: smooth; чтобы избежать задержки */
         }
 
-        /* --- ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНЫХ БРАУЗЕРОВ --- */
+        /* АДАПТИВНОСТЬ: ИСПРАВЛЕНИЕ ОБРЕЗКИ ТЕКСТА НА МОБИЛЬНЫХ */
         @media (max-width: 768px) {
             body {
-                /* Увеличенный отступ, чтобы текст не обрезался */
+                /* Увеличенный отступ для компенсации системной строки */
                 padding-top: 100px; 
             }
         }
         
-        /* ... (остальные стили CSS) ... */
+        /* Золотой градиент */
+        .text-gold-gradient {
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
 
         /* --- ШАПКА: ПОЛУПРОЗРАЧНОСТЬ И СТЕКЛО --- */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7) !important; 
-            backdrop-filter: blur(8px); 
+            background-color: rgba(0, 0, 0, 0.7) !important; /* Прозрачность 70% */
+            backdrop-filter: blur(8px); /* Эффект стекла */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
             padding: 15px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        /* ИСПРАВЛЕНИЕ: Золотая иконка гамбургера */
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            /* Золотой градиент для логотипа */
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        /* КОРЗИНА */
+        .cart-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .cart-badge {
+            background: var(--gold);
+            color: black;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+        }
+        
+        .navbar-toggler { 
+            border-color: var(--gold); /* Обводка кнопки */
+        }
+        /* Золотая иконка гамбургера */
         .navbar-toggler-icon { 
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }

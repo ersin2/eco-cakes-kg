@@ -26,7 +26,7 @@
         /* АДАПТИВНОСТЬ: ИСПРАВЛЕНИЕ ОБРЕЗКИ ТЕКСТА НА МОБИЛЬНЫХ */
         @media (max-width: 768px) {
             body {
-                padding-top: 100px; 
+                padding-top: 100px; /* Увеличенный отступ */
             }
         }
         
@@ -96,21 +96,18 @@
             right: -10px;
         }
         
-        /* --- ИСПРАВЛЕНИЕ КНОПКИ ГАМБУРГЕРА (Три полоски) --- */
+        /* --- КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ КНОПКИ ГАМБУРГЕРА (Увеличенная контрастность) --- */
         .navbar-toggler { 
-            border: 2px solid var(--gold); /* Утолщаем золотую рамку */
-            padding: 8px 10px; /* Увеличиваем размер кнопки */
-            border-radius: 8px; /* Углы, как у карточек */
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-        }
-        .navbar-toggler:focus {
-            box-shadow: none; /* Убираем стандартную синюю рамку при фокусе */
+            /* Делаем рамку толще и золотой */
+            border: 2px solid var(--gold); 
+            padding: 8px 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
         
-        /* Золотая иконка гамбургера */
+        /* Полоски делаем чисто белыми (максимальный контраст) и толще */
         .navbar-toggler-icon { 
-            /* Убеждаемся, что полоски золотые */
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
     </style>
 </head>

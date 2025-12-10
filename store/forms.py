@@ -4,9 +4,12 @@ from .models import Order
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        # 👇 ПРОВЕРЬ ЭТУ СТРОКУ! Слово 'payment_method' ОБЯЗАНО быть тут
-        fields = ['first_name', 'last_name', 'phone', 'email', 'address', 'city', 'note', 'payment_method']
+        fields = ['first_name', 'last_name', 'phone', 'address', 'comment', 'payment_method']
         widgets = {
-             # Это делает кнопки выбора вместо обычного списка
-            'payment_method': forms.RadioSelect(),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ваше Имя'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Телефон (WhatsApp)'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Адрес доставки'}),
+            'comment': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Комментарий к заказу'}),
+            'payment_method': forms.HiddenInput(),
         }

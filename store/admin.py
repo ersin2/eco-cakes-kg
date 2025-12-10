@@ -1,34 +1,33 @@
 from django.contrib import admin
-from .models import Category, Product, Cart, CartItem, Order, OrderProduct
+from django.utils.html import mark_safe
+from .models import Product, Category, Order, OrderProduct
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)} # Автоматически создаст slug из имени
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'is_available', 'created_at']
-    list_filter = ['is_available', 'created_at']
-    list_editable = ['price', 'is_available'] # Можно менять цену прямо в списке
-    prepopulated_fields = {'slug': ('name',)}
-
-@admin.register(Cart)
-class CartAdmin(admin.ModelAdmin):
-    list_display = ['cart_id', 'date_added']
-
-@admin.register(CartItem)
-class CartItemAdmin(admin.ModelAdmin):
-    list_display = ['product', 'cart', 'quantity', 'is_active']
-# Register your models here.
 class OrderProductInline(admin.TabularInline):
     model = OrderProduct
-    readonly_fields = ('product', 'product_price', 'quantity')
+    readonly_fields = ('product', 'quantity', 'product_price')
     extra = 0
 
-@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'phone', 'total', 'status', 'created_at']
-    list_filter = ['status', 'created_at']
-    search_fields = ['first_name', 'phone', 'email']
+    list_display = ['id', 'first_name', 'phone', 'payment_method', 'total', 'status', 'created_at']
+    list_filter = ['status', 'payment_method', 'created_at']
+    list_editable = ['status']
     inlines = [OrderProductInline]
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('get_image', 'name', 'price', 'category', 'is_available')
+    list_editable = ('price', 'is_available')
+    prepopulated_fields = {'slug': ('name',)}
+    
+    def get_image(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="50" style="border-radius:5px;">')
+        return "-"
+    get_image.short_description = "Фото"
+
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('category_name',)}
+    list_display = ('category_name', 'slug')
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Order, OrderAdmin)

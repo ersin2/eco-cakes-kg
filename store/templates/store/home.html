@@ -1,170 +1,261 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% block title %}Eco Cakes - Меню{% endblock %}
 
 {% block content %}
 
 <style>
-    :root { --gold: #d4af37; }
-    
-    /* ЗОЛОТЫЕ СТИЛИ */
-    .text-gold { color: var(--gold) !important; }
-    
-    /* Кнопки и категории */
-    .btn-gold-outline {
-        color: var(--gold);
-        border: 2px solid var(--gold); /* Жирнее рамка */
-        background: transparent;
+    /* --- ЭФФЕКТ СВЕРКАЮЩЕГО ЗОЛОТА --- */
+    .gold-text {
         text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 1px;
-        transition: 0.3s;
-    }
-    .btn-gold-outline:hover {
-        background: var(--gold);
-        color: #000;
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-    }
-
-    /* ИНДИКАТОРЫ (ЛИНИИ КАК У SAMSUNG) */
-    .carousel-indicators {
-        bottom: 20px; /* Чуть выше от края */
-    }
-    .carousel-indicators [data-bs-target] {
-        background-color: #fff;
-        height: 4px;       /* Высота линии */
-        width: 30px;       /* Длина линии */
-        border: none;
-        border-radius: 2px;
-        opacity: 0.5;
-        margin: 0 5px;
-        transition: all 0.3s;
-    }
-    .carousel-indicators .active {
-        background-color: var(--gold) !important; /* Активная - ЗОЛОТАЯ */
-        opacity: 1;
-        width: 50px; /* Активная длиннее */
+        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #bf953f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: shine 3s linear infinite;
+        font-weight: 800; /* Жирный шрифт, чтобы блеск был виден */
+        text-shadow: none; /* Тень убираем, иначе она перекрывает блеск */
     }
 
-    /* КАРТОЧКИ */
-    .product-card {
-        background: #0f0f0f;
-        border: 1px solid #333;
-        transition: transform 0.3s;
-    }
-    .product-card:hover {
-        border-color: var(--gold);
-        transform: translateY(-5px);
-    }
-</style>
-
-<div id="cakeCarousel" class="carousel slide carousel-fade mb-4 fade-up" data-bs-ride="carousel">
-    
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#cakeCarousel" data-bs-slide-to="2"></button>
-    </div>
-
-    <div class="carousel-inner shadow-lg">
-        <div class="carousel-item active" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
-                 class="d-block w-100 mobile-img" alt="Торт 1">
-            
-            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-                <h1 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Eco Cakes</h1>
-                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">НАТУРАЛЬНЫЙ ВКУС</p>
-                <a href="#menu" class="btn btn-gold-outline px-5 py-3 rounded-pill">Заказать</a>
-            </div>
-        </div>
-
-        <div class="carousel-item" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?q=80&w=1920&auto=format&fit=crop" 
-                 class="d-block w-100 mobile-img" alt="Торт 2">
-            
-            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-                <h2 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Праздник</h2>
-                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">СВАДЬБЫ И ТОИ</p>
-                <a href="#menu" class="btn btn-gold-outline px-5 py-3 rounded-pill">Меню</a>
-            </div>
-        </div>
-        
-        <div class="carousel-item" data-bs-interval="4000">
-            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1920&auto=format&fit=crop" 
-                 class="d-block w-100 mobile-img" alt="Торт 3">
-            
-            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-                <h2 class="display-3 fw-bold mb-2 luxury-font" style="color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8);">Доставка</h2>
-                <p class="lead text-white mb-4 fw-bold" style="text-shadow: 0 2px 5px #000;">ПО ВСЕМУ БИШКЕКУ</p>
-            </div>
-        </div>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#cakeCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded-circle p-3" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#cakeCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded-circle p-3" aria-hidden="true"></span>
-    </button>
-</div>
-
-<div id="menu" class="container pb-5">
-    <div class="text-center mb-5 fade-up">
-        <h2 class="display-4 text-white" style="font-family: 'Playfair Display', serif;">Наше Меню</h2>
-        <div style="width: 80px; height: 3px; background: var(--gold); margin: 20px auto; box-shadow: 0 0 15px var(--gold);"></div>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for product in products %}
-        <div class="col fade-up">
-            <div class="card h-100 product-card rounded-4 overflow-hidden">
-                
-                <div class="position-relative" style="height: 280px;">
-                    {% if product.image %}
-                    <img src="{{ product.image.url }}" class="w-100 h-100" alt="{{ product.name }}" style="object-fit: cover;">
-                    {% else %}
-                    <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white-50">Нет фото</div>
-                    {% endif %}
-                </div>
-
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title text-white fw-bold fs-4 mb-2 luxury-font">{{ product.name }}</h5>
-                    <p class="text-secondary small mb-3">{{ product.description|truncatewords:10 }}</p>
-                    
-                    <div class="text-gold fs-3 fw-bold mb-3" style="text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">
-                        {{ product.price }} <small class="fs-6">c.</small>
-                    </div>
-                    
-                    <a href="{% url 'add_cart' product.id %}" class="btn btn-gold-outline w-100 rounded-pill py-2">
-                        + В корзину
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<style>
-    .luxury-font { font-family: 'Playfair Display', serif; }
-
-    /* --- НАСТРОЙКИ КАРТИНКИ (САМОЕ ВАЖНОЕ) --- */
-    
-    /* 1. На Компьютере: Большая и красивая */
-    .mobile-img {
-        height: 600px;
-        object-fit: cover;
-        filter: brightness(0.55);
-    }
-
-    /* 2. На Телефоне: МЕНЬШЕ ВЫСОТА, ЧТОБЫ БЫЛО ВИДНО ТОРТ */
-    @media (max-width: 768px) {
-        .mobile-img {
-            height: 50vh !important; /* Было 80vh, стало 50vh (половина экрана) */
-            min-height: 400px;       /* Но не меньше этого */
-            object-fit: cover;
-            object-position: center; /* Центрируем торт */
+    @keyframes shine {
+        to {
+            background-position: 200% center;
         }
     }
+
+    /* СЛАЙДЕР */
+    .hero-img { 
+        height: 100vh; 
+        object-fit: cover; 
+        filter: brightness(0.4); 
+    }
+    
+    .slide-content {
+        z-index: 2;
+        text-align: center;
+    }
+
+    .slide-title { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 4.5rem; /* Сделал еще крупнее */
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+    
+    .slide-text {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: 300;
+        margin-bottom: 40px;
+    }
+
+    /* --- КНОПКА (ЗАКРУГЛЕННАЯ) --- */
+    .btn-gold {
+        background: linear-gradient(45deg, #bf953f, #b38728);
+        color: white;
+        padding: 15px 45px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border: none;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .btn-gold:hover {
+        background: linear-gradient(45deg, #fcf6ba, #bf953f);
+        color: black;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(191, 149, 63, 0.6); /* Сильное свечение при наведении */
+    }
+
+    /* --- КАРТОЧКИ (ЗАКРУГЛЕННЫЕ) --- */
+    .product-card { 
+        background-color: #141414; 
+        border: 1px solid #222; 
+        transition: all 0.4s ease;
+        border-radius: 25px; /* Сильное закругление */
+        overflow: hidden;
+    }
+    .product-card:hover { 
+        transform: translateY(-10px); 
+        border-color: #b38728; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .product-img-wrapper { height: 280px; overflow: hidden; position: relative; cursor: pointer; }
+    .product-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .product-card:hover img { transform: scale(1.1); }
+    
+    .price-tag {
+        color: #fcf6ba; 
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    /* Кнопка "В корзину" (Закругленная) */
+    .btn-cart-outline { 
+        border: 1px solid #444; 
+        color: #bbb; 
+        text-transform: uppercase; 
+        font-size: 0.8rem;
+        width: 100%; 
+        padding: 12px; 
+        display: block; 
+        text-align: center; 
+        text-decoration: none; 
+        margin-top: 15px;
+        transition: 0.3s;
+        border-radius: 15px;
+    }
+    .btn-cart-outline:hover { 
+        border-color: #bf953f;
+        color: #bf953f;
+        background: rgba(191, 149, 63, 0.1);
+    }
+
+    /* ЗАГОЛОВКИ КАТЕГОРИЙ */
+    .category-header {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 40px;
+        margin-top: 60px;
+    }
+    .category-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        color: white;
+    }
+    .category-line {
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #bf953f, transparent);
+        margin: 10px auto;
+    }
+
+    /* Модальное окно (Закругленное) */
+    .modal-content { 
+        background-color: #111; 
+        border: 1px solid #333; 
+        color: white;
+        border-radius: 25px;
+        overflow: hidden;
+    }
+    .kbju-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #333; border: 1px solid #333; margin: 20px 0; border-radius: 15px; overflow: hidden; }
+    .kbju-item { background: #1a1a1a; padding: 10px; text-align: center; }
+    .kbju-val { display: block; font-weight: bold; font-size: 1.1rem; color: #fcf6ba; }
+    .kbju-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
 </style>
 
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" class="d-block w-100 hero-img">
+            <div class="carousel-caption d-flex flex-column justify-content-center h-100 slide-content">
+                <h1 class="slide-title gold-text">ECO CAKES</h1>
+                <p class="slide-text">Искусство полезных десертов</p>
+                <div><a href="#menu-start" class="btn-gold">Смотреть меню</a></div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1920&auto=format&fit=crop" class="d-block w-100 hero-img">
+            <div class="carousel-caption d-flex flex-column justify-content-center h-100 slide-content">
+                <h1 class="slide-title gold-text">БЕЗ САХАРА</h1>
+                <p class="slide-text">Истинный вкус шоколада и ягод</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=1920&auto=format&fit=crop" class="d-block w-100 hero-img">
+            <div class="carousel-caption d-flex flex-column justify-content-center h-100 slide-content">
+                <h1 class="slide-title gold-text">НАТУРАЛЬНО</h1>
+                <p class="slide-text">Только лучшие ингредиенты</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<div id="menu-start" class="container pb-5">
+    {% for category in categories %}
+    {% if category.product_set.all %}
+    
+    <div class="text-center category-header w-100">
+        <h2 class="category-title">{{ category.category_name }}</h2>
+        <div class="category-line"></div>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for product in products %}
+        {% if product.category == category %}
+        <div class="col">
+            <div class="card h-100 product-card">
+                <div class="product-img-wrapper" data-bs-toggle="modal" data-bs-target="#modal{{ product.id }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300">
+                    {% endif %}
+                </div>
+                <div class="card-body text-center p-4 d-flex flex-column">
+                    <h5 class="card-title text-white mb-3" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">{{ product.name }}</h5>
+                    <p class="small flex-grow-1 text-white-50">{{ product.description|truncatechars:50 }}</p>
+                    <div class="mt-3"><span class="price-tag">{{ product.price }} с.</span></div>
+                    <a href="{% url 'add_cart' product.id %}" class="btn-cart-outline">В корзину</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal{{ product.id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="row g-0">
+                            <div class="col-md-6 bg-black">
+                                {% if product.image %}
+                                <img src="{{ product.image.url }}" class="w-100 h-100" style="object-fit: cover; min-height: 400px;">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+                                <h2 class="gold-text" style="font-family: 'Playfair Display', serif;">{{ product.name }}</h2>
+                                <h3 class="text-white mt-2">{{ product.price }} с.</h3>
+                                <p class="text-white-50 mt-4">{{ product.description }}</p>
+                                
+                                <div class="kbju-grid">
+                                    <div class="kbju-item"><span class="kbju-val">{{ product.calories|default:"-" }}</span><span class="kbju-label">Ккал</span></div>
+                                    <div class="kbju-item"><span class="kbju-val">{{ product.protein|default:"-" }}</span><span class="kbju-label">Белки</span></div>
+                                    <div class="kbju-item"><span class="kbju-val">{{ product.fat|default:"-" }}</span><span class="kbju-label">Жиры</span></div>
+                                    <div class="kbju-item"><span class="kbju-val">{{ product.carbs|default:"-" }}</span><span class="kbju-label">Угл</span></div>
+                                </div>
+                                <a href="{% url 'add_cart' product.id %}" class="btn-gold mt-4 text-center">Добавить в заказ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myCarousel = document.querySelector('#heroCarousel')
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 3000,
+            ride: 'carousel'
+        })
+    });
+</script>
 {% endblock %}

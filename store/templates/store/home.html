@@ -5,6 +5,17 @@
 {% block content %}
 
 <style>
+    @media (max-width: 768px) {
+        /* Уменьшаем размер золотого заголовка в слайдере */
+        .slide-title {
+            font-size: 2.5rem !important; /* Уменьшено до 2.5rem для безопасности */
+            line-height: 1.1; /* Уменьшаем интервал между строками */
+        }
+        /* Уменьшаем размер подзаголовков в слайдере */
+        .slide-subtitle {
+            font-size: 1rem !important; /* Уменьшено до 1rem */
+        }
+    }
     /* --- ЭФФЕКТ СВЕРКАЮЩЕГО ЗОЛОТА --- */
     .gold-text {
         text-transform: uppercase;

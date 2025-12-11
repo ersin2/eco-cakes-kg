@@ -3,14 +3,17 @@
 <html lang="ru">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DBWGGYHX3L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-DBWGGYHX3L');
-</script>
+      gtag('config', 'G-DBWGGYHX3L');
+    </script>
+
     <meta name="google-site-verification" content="xZBRJWYc_WZgt7-ilezS5-MnMU2S0aSFZBd9JHhOER4" />
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -24,128 +27,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --dark-bg: #050505; 
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
-            padding-top: 85px; 
-        }
-
-        /* АДАПТИВНОСТЬ: ИСПРАВЛЕНИЕ ОБРЕЗКИ ТЕКСТА НА МОБИЛЬНЫХ */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 100px; /* Увеличенный отступ */
-            }
-        }
+        :root { --gold: #d4af37; --dark-bg: #050505; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: white; padding-top: 85px; }
+        @media (max-width: 768px) { body { padding-top: 100px; } }
         
-        /* Золотой градиент */
-        .text-gold-gradient {
-            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 4s linear infinite;
-        }
+        .text-gold-gradient { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: shine 4s linear infinite; }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        .navbar { background-color: rgba(0, 0, 0, 0.7) !important; backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.8rem; letter-spacing: 1px; background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { color: rgba(255, 255, 255, 0.9) !important; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-weight: 600; margin: 0 12px; transition: 0.3s; }
+        .nav-link:hover { color: var(--gold) !important; }
 
-        /* --- ШАПКА: ПОЛУПРОЗРАЧНОСТЬ И СТЕКЛО --- */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7) !important; 
-            backdrop-filter: blur(8px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 15px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            /* Золотой градиент для логотипа */
-            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.9) !important;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin: 0 12px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--gold) !important;
-        }
-
-        /* КОРЗИНА */
-        .cart-icon-wrapper {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
+        .cart-icon-wrapper { position: relative; display: inline-flex; align-items: center; }
+        .cart-badge { background: var(--gold); color: black; font-size: 0.7rem; font-weight: bold; border-radius: 50%; padding: 2px 6px; position: absolute; top: -8px; right: -10px; }
         
-        .cart-badge {
-            background: var(--gold);
-            color: black;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 2px 6px;
-            position: absolute;
-            top: -8px;
-            right: -10px;
-        }
-        
-        /* --- КНОПКА ГАМБУРГЕРА (Золотая рамка, белые полоски) --- */
-        .navbar-toggler { 
-            border: 2px solid var(--gold); 
-            padding: 8px 10px; 
-            border-radius: 8px; 
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-        
-        .navbar-toggler-icon { 
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
+        /* ЗОЛОТОЙ БУРГЕР */
+        .navbar-toggler { border: 2px solid var(--gold); padding: 8px 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">Eco Cakes</a>
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
-                    
                     <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Главная</a></li>
-                    
                     <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#menu-start">Меню</a></li>
-                    
                     <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">О нас</a></li>
                     <li class="nav-item ms-3">
                         <a class="nav-link cart-icon-wrapper" href="{% url 'cart' %}">
                             <i class="fas fa-shopping-bag fs-5"></i>
-                            {% if cart_count > 0 %}
-                                <span class="cart-badge">{{ cart_count }}</span>
-                            {% endif %}
+                            {% if cart_count > 0 %} <span class="cart-badge">{{ cart_count }}</span> {% endif %}
                         </a>
                     </li>
                 </ul>

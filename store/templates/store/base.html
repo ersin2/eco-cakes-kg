@@ -73,5 +73,78 @@
     {% block content %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <a href="{% url 'cart' %}" class="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        {% if cart_count > 0 %}
+            <span class="floating-badge">{{ cart_count }}</span>
+        {% endif %}
+    </a>
+
+    <style>
+        /* Стиль для кнопки */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 30px; /* Отступ снизу */
+            right: 20px;  /* Отступ справа */
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728); /* Твой золотой градиент */
+            border-radius: 50%; /* Делает круг */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black !important; /* Иконка черная */
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.4);
+            z-index: 9999; /* Чтобы была поверх всего */
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            animation: pulse-gold 2s infinite; /* Анимация пульсации */
+        }
+
+        /* Эффект нажатия */
+        .floating-cart-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Красный кружочек с цифрой */
+        /* Стиль для кнопки */
+        .floating-cart-btn {
+            /* Сначала СКРЫВАЕМ кнопку (для компьютеров) */
+            display: none; 
+            
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: black !important;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            animation: pulse-gold 2s infinite;
+        }
+
+        /* ПОКАЗЫВАЕМ только на телефонах (ширина меньше 768px) */
+        @media (max-width: 768px) {
+            .floating-cart-btn {
+                display: flex; /* Включаем кнопку на мобиле */
+            }
+        }
+
+        /* Анимация "Позови меня" */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+    </style>
+    </body> ```
 </body>
 </html>
